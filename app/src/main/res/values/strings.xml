@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">QuizApp</string>
-    <string name="test_1">Android is Open Source</string>
+    <string name="test_1">Android is fun</string>
+    <string name="test_2">Android is Owned by Oracle</string>
+    <string name="test_3">AppCompatActivity is for Compatibility</string>
+    <string name="test_4">Android Logging System has a method called wtf()</string>
+    <string name="test_5">Google did not create Android, they bought the company in 2005</string>
+    <string name="test_6">Android is more popular than IOS</string>
+    <string name="test_7">You can create Android apps just in Java</string>
+    <string name="test_8">Android is Growing</string>
+    <string name="test_9">Android development is easy</string>
+    <string name="test_10">Android is Open Source</string>
     <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect!</string>
 </resources>
