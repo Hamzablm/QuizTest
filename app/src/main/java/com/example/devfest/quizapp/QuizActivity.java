@@ -27,10 +27,15 @@ public class QuizActivity extends AppCompatActivity {
             new Question(R.string.test_10, true),
     };
     private int index;
+    private static final String KEY_INDEX = "index";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            index = savedInstanceState.getInt(KEY_INDEX, 0);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
@@ -92,6 +97,12 @@ public class QuizActivity extends AppCompatActivity {
     private void updateQuestion() {
         int question = questions[index].getTestResId();
         testTv.setText(question);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(KEY_INDEX, index);
     }
 
 }
