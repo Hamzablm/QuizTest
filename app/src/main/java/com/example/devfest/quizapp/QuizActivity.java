@@ -13,6 +13,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button falseButton;
     private Button trueButton;
     private Button nextBtn;
+    private Button previous;
     private Question[] questions = {
             new Question(R.string.test_1, true),
             new Question(R.string.test_2, false),
@@ -58,6 +59,16 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 index = (index + 1) % questions.length;
+                updateQuestion();
+            }
+        });
+
+        previous = findViewById(R.id.previous_btn);
+        previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                index = (index - 1) % questions.length;
+                if (index < 0) index = questions.length - 1;
                 updateQuestion();
             }
         });
