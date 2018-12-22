@@ -12,20 +12,36 @@ public class QuizActivity extends AppCompatActivity {
     private TextView testTv;
     private Button falseButton;
     private Button trueButton;
+    private Button nextBtn;
+    private Question[] questions = {
+            new Question(R.string.test_1, true),
+            new Question(R.string.test_2, false),
+            new Question(R.string.test_3, true),
+            new Question(R.string.test_4, true),
+            new Question(R.string.test_5, true),
+            new Question(R.string.test_6, true),
+            new Question(R.string.test_7, false),
+            new Question(R.string.test_8, true),
+            new Question(R.string.test_9, true),
+            new Question(R.string.test_10, true),
+    };
+    private int index;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        testTv = findViewById(R.id.test_tv);
+        final int question= questions[index].getTestResId();
+        testTv.setText(question);
+
         falseButton = findViewById(R.id.false_btn_id);
         falseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(
-                        QuizActivity.this,
-                        R.string.incorrect_toast,
-                        Toast.LENGTH_SHORT).show();
+                checkAnswer(false);
             }
         });
 
@@ -33,12 +49,38 @@ public class QuizActivity extends AppCompatActivity {
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(
-                        QuizActivity.this,
-                        R.string.correct_toast,
-                        Toast.LENGTH_SHORT).show();
+             checkAnswer(true);
             }
         });
+
+        nextBtn = findViewById(R.id.next_btn);
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                index = (index + 1) % questions.length;
+                updateQuestion();
+            }
+        });
+
+        updateQuestion();
+    }
+
+    private void checkAnswer(boolean userPressed) {
+        boolean answerBool = questions[index].isAnswerTrue();
+
+        int messageResId;
+
+        if (userPressed == answerBool) {
+            messageResId = R.string.correct_toast;
+        } else {
+            messageResId = R.string.incorrect_toast;
+        }
+        Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateQuestion() {
+        int question = questions[index].getTestResId();
+        testTv.setText(question);
     }
 
 }
